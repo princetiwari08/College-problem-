@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admission Form - Sarhad College</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #e9e9e9;
+    margin: 0;
+    padding: 20px;
+  }
+  .sheet {
+    max-width: 900px;
+    margin: 0 auto 20px;
+    background: #fff;
+    padding: 30px 40px 50px;
+    border: 1px solid #ccc;
+  }
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    gap: 20px;
+  }
+  .logo { text-align: center; }
+  .logo img { height: 90px; }
+  .ay-box {
+    border: 2px solid #000;
+    padding: 10px 18px;
+    font-weight: bold;
+    font-size: 18px;
+    white-space: nowrap;
+  }
+  h1.college-name { text-align: center; font-size: 28px; margin: 8px 0 2px; }
+  .accredit { text-align: center; font-size: 17px; margin: 2px 0 8px; }
+  .subtext { text-align: center; font-size: 13px; margin: 2px 0; }
+  hr.thick { border: none; border-top: 2px solid #000; margin: 12px 0 14px; }
+
+  .form-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+  }
+  .form-title-row .title { font-weight: bold; font-size: 17px; }
+  .form-title-row .formno { font-weight: bold; font-size: 15px; }
+
+  .program-line { font-weight: bold; font-size: 15px; margin: 10px 0 4px; }
+  .program-sub { font-weight: bold; font-size: 15px; margin: 4px 0 20px; }
+
+  .course-photo-row { display: flex; justify-content: space-between; gap: 30px; margin-bottom: 20px; }
+  .course-boxes { display: flex; flex-direction: column; gap: 22px; }
+  .course-box-item { display: flex; align-items: center; gap: 14px; font-size: 16px; font-weight: bold; }
+
+  input[type="text"], input[type="number"], input[type="date"], input[type="email"], textarea {
+    font-family: inherit;
+    font-size: 15px;
+    border: none;
+    border-bottom: 1px solid #000;
+    background: transparent;
+    padding: 3px 4px;
+    outline: none;
+  }
+  input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus,
+  input[type="email"]:focus, textarea:focus { background: #fffbe6; }
+
+  .box-input { border: 1px solid #000 !important; width: 150px; height: 34px; text-align: center; }
+  .box-input.sm { width: 60px; }
+  .box-input.check { width: 40px; height: 34px; cursor: pointer; }
+
+  .photo-upload {
+    width: 170px;
+    height: 210px;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #fafafa;
+  }
+  .photo-upload img { width: 100%; height: 100%; object-fit: cover; }
+
+  .details { margin-top: 10px; border-top: 1px solid #000; padding-top: 14px; font-size: 15px; }
+  .line-field { display: flex; align-items: baseline; gap: 6px; margin-bottom: 6px; flex-wrap: wrap; }
+  .line-field .lbl { white-space: nowrap; }
+  .fill { flex: 1; min-width: 140px; }
+  .fill.small { flex: none; width: 140px; }
+  
+  .name-line-wrap { margin-bottom: 2px; }
+
+  .radio-item { display: inline-flex; align-items: center; gap: 4px; margin-right: 4px; }
+  .radio-item input { width: 18px; height: 18px; cursor: pointer; }
+
+  .page-break { page-break-before: always; margin-top: 30px; }
+
+  table.academic { width: 100%; border-collapse: collapse; margin: 14px 0 10px; font-size: 14px; }
+  table.academic th, table.academic td { border: 1px solid #000; padding: 6px; text-align: left; vertical-align: middle; }
+  table.academic th { font-weight: bold; }
+  table.academic td input[type="text"] { width: 100%; border: none; padding: 4px; }
+  h2.record-title { font-size: 22px; margin: 0 0 4px; }
+
+  .marks-row { display: flex; align-items: baseline; gap: 10px; font-size: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+
+  .literacy-row { display: flex; align-items: center; gap: 10px; font-size: 15px; margin-bottom: 10px; flex-wrap: wrap; }
+  .literacy-label { width: 160px; flex-shrink: 0; }
+
+  .undertaking { margin-top: 20px; font-size: 13.5px; line-height: 1.6; }
+  .undertaking ol { padding-left: 20px; margin: 8px 0; }
+  .undertaking li { margin-bottom: 8px; }
+  .undertaking li.highlight { font-weight: bold; }
+
+  .sign-pad { width: 260px; height: 60px; border-bottom: 1px solid #000; }
+  .signature-row { display: flex; justify-content: space-between; margin-top: 40px; font-size: 15px; gap: 40px; flex-wrap: wrap; }
+  .signature-row > div { text-align: center; }
+
+  .doc-checklist {
+    border: 1px solid #000;
+    padding: 14px 18px;
+    margin-top: 24px;
+    font-size: 14px;
+  }
+  .doc-checklist .cat-title { font-weight: bold; margin: 10px 0 4px; }
+  .doc-row { display: flex; justify-content: space-between; max-width: 480px; margin-bottom: 4px; gap: 20px; }
+  .doc-row .doc-name { flex: 1; }
+  .principal-block { text-align: right; margin-top: 20px; font-size: 15px; font-weight: bold; }
+
+  .toolbar {
+    max-width: 900px;
+    margin: 0 auto 14px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  .toolbar button {
+    font-family: inherit;
+    font-size: 14px;
+    padding: 8px 16px;
+    border: 1px solid #333;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .toolbar button:hover { background: #f0f0f0; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .sheet { border: none; margin: 0 auto; }
+    .toolbar { display: none; }
+    input, textarea { border-color: #000 !important; }
+    .photo-upload { border-style: solid !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button type="button" onclick="window.print()">Print / Save as PDF</button>
+  <button type="button" onclick="document.getElementById('admForm').reset()">Clear Form</button>
+</div>
+
+<form id="admForm">
+
+<div class="sheet">
+
+  <div class="top-row">
+    <div style="width:170px;"></div>
+    <div class="logo">
+      <img src="IMG_20260730_195111.jpg" alt="Sarhad College Logo">
+    </div>
+    <div class="ay-box">A.Y. 2026-2027</div>
+  </div>
+
+  <h1 class="college-name">Sarhad College of Arts, Commerce &amp; Science</h1>
+  <p class="accredit">Accredited with B<sup>+</sup> by NAAC</p>
+  <p class="subtext">[Affiliated to University of Pune (ID No. PU/PN/ACS/300/2008) &amp; Recognised by Govt. Of Maharashtra]</p>
+  <p class="subtext">Pune – 411046. Telephone: 020 2436 8621 &nbsp; Email: sarhadcollege@gmail.com.</p>
+  <hr class="thick">
+
+  <div class="form-title-row">
+    <span class="title">ADDMISSION FORM</span>
+    <span class="formno">Form No. <input type="text" class="box-input sm" style="height:26px;" name="form_no" value="1"></span>
+  </div>
+
+  <p class="program-line">Program Applied for Savitribai Phule Pune University Affiliated Courses</p>
+  <p class="program-sub">Bachelor of Science in Science (B.Sc. Regular) 2024 Pattern</p>
+
+  <div class="course-photo-row">
+    <div class="course-boxes">
+      <label class="course-box-item">FY B.Sc. (Regular) <input type="checkbox" class="box-input check" name="year" value="FY"></label>
+      <label class="course-box-item">SY B.Sc. (Regular) <input type="checkbox" class="box-input check" name="year" value="SY"></label>
+      <label class="course-box-item">TY B.Sc. (Regular) <input type="checkbox" class="box-input check" name="year" value="TY"></label>
+    </div>
+
+    <label class="photo-upload" id="mainPhotoLabel">
+      <span id="mainPhotoText">Click to upload photo</span>
+      <input type="file" accept="image/*" style="display:none;" onchange="previewImage(this,'mainPhotoLabel','mainPhotoText')">
+    </label>
+  </div>
+
+  <div class="details">
+    <div class="name-line-wrap">
+      <div class="line-field">
+        <span class="lbl"><strong>Name of the Student :</strong></span>
+        <input type="text" class="fill" name="surname" placeholder="Surname">
+        <input type="text" class="fill" name="first_name" placeholder="First Name">
+        <input type="text" class="fill" name="father_name" placeholder="Father/Husband Name">
+      </div>
+      
+
+    <div class="line-field">
+      <input type="text" class="fill" name="mother_name" placeholder="Mother Name">
+    </div>
+    
+    <div class="line-field">
+      <span class="lbl"><strong>Gender :-</strong></span>
+      <label class="radio-item"><input type="checkbox" name="gender" value="Male" onclick="singleSelect(this)"> Male</label>
+      <label class="radio-item"><input type="checkbox" name="gender" value="Female" onclick="singleSelect(this)"> Female</label>
+      &nbsp;&nbsp;<span class="lbl"><strong>Date Of Birth :</strong></span>
+      <input type="date" name="dob">
+      &nbsp;&nbsp;<span class="lbl"><strong>Age :</strong></span>
+      <input type="text" class="fill small" name="age" style="width:60px;"> Yrs
+    </div>
+
+    <div class="line-field">
+      <span class="lbl"><strong>Marital Status :-</strong></span>
+      <label class="radio-item"><input type="checkbox" name="marital_status" value="Married" onclick="singleSelect(this)"> Married</label>
+      <label class="radio-item"><input type="checkbox" name="marital_status" value="Single" onclick="singleSelect(this)"> Single</label>
+      &nbsp;&nbsp;<span class="lbl"><strong>Caste</strong></span> <input type="text" class="fill" name="caste">
+      &nbsp;&nbsp;<span class="lbl"><strong>Sub cast</strong></span> <input type="text" class="fill" name="sub_caste">
+    </div>
+
+    <div class="line-field">
+      <span class="lbl"><strong>Nationality :</strong></span>
+      <input type="text" class="fill small" name="nationality" value="INDIAN">
+      &nbsp;&nbsp;<span class="lbl"><strong>Religion</strong></span> <input type="text" class="fill" name="religion">
+      &nbsp;&nbsp;<span class="lbl"><strong>Mother Tongue</strong></span> <input type="text" class="fill" name="mother_tongue">
+    </div>
+
+    <div class="line-field">
+      <span class="lbl"><strong>Local Address</strong></span> <input type="text" class="fill" name="local_address_1">
+    </div>
+    <div class="line-field">
+      <input type="text" class="fill" name="local_address_2">
+      &nbsp;&nbsp;<span class="lbl"><strong>Pin code</strong></span> <input type="text" class="fill small" name="local_pin">
+    </div>
+
+    <div class="line-field">
+      <span class="lbl"><strong>Permanent Address</strong></span> <input type="text" class="fill" name="permanent_address_1">
+    </div>
+    <div class="line-field"><input type="text" class="fill" name="permanent_address_2"></div>
+    <div class="line-field"><input type="text" class="fill" name="permanent_address_3"></div>
+
+    <div class="line-field">
+      <span class="lbl"><strong>Pin</strong></span> <input type="text" class="fill small" name="permanent_pin">
+      &nbsp;&nbsp;<span class="lbl"><strong>Mo.No.1)</strong></span> <input type="text" class="fill small" name="mobile_1">
+      &nbsp;&nbsp;<span class="lbl"><strong>Mo.NO.2)</strong></span> <input type="text" class="fill small" name="mobile_2">
+    </div>
+
+    <div class="line-field">
+      <span class="lbl"><strong>Email Id:-</strong></span>
+      <input type="email" class="fill" name="email">
+    </div>
+
+    <div class="line-field">
+      <span class="lbl"><strong>Aadhar Card NO:-</strong></span>
+      <input type="text" class="fill" name="aadhar">
+    </div>
+  </div>
+
+</div>
+
+<div class="sheet page-break">
+
+  <h2 class="record-title">ACADEMIC RECORD</h2>
+  <table class="academic">
+    <thead>
+      <tr>
+        <th>Sr.No.</th>
+        <th>Last Exam<br>Passed/Appeared</th>
+        <th>Name of Board<br>Maharashtra Board<br>/CBSE / University</th>
+        <th>Month- Year<br>of Passing</th>
+        <th>Seat No.</th>
+        <th>Stream<br>Arts/Comm./Sci.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><input type="text" value="12th STD" name="exam_1_label"></td>
+        <td><input type="text" name="board_1"></td>
+        <td><input type="text" name="date_1"></td>
+        <td><input type="text" name="seat_1"></td>
+        <td><input type="text" name="stream_1"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="marks-row">
+    <span class="lbl"><strong>Marks Obtained</strong></span>
+    <input type="text" class="fill small" name="marks_obtained" style="width:110px;">
+    <span>/</span>
+    <input type="text" class="fill small" name="marks_out_of" style="width:110px;">
+    &nbsp;&nbsp;<span class="lbl"><strong>Percentage %</strong></span>
+    <input type="text" class="fill small" name="percentage" style="width:110px;">
+  </div>
+
+  <p style="font-weight:bold; margin-bottom:10px;">COMPUTER LITERARY (Scale your knowledge of the following)</p>
+
+  <div class="literacy-row">
+    <span class="literacy-label">MS Office/Windows</span>
+    <label class="radio-item"><input type="checkbox" name="ms_office" value="Good" onclick="singleSelect(this)"> Good</label>
+    <label class="radio-item"><input type="checkbox" name="ms_office" value="Average" onclick="singleSelect(this)"> Average</label>
+    <label class="radio-item"><input type="checkbox" name="ms_office" value="Not known" onclick="singleSelect(this)"> Not known</label>
+  </div>
+  <div class="literacy-row">
+    <span class="literacy-label">Internet Operation</span>
+    <label class="radio-item"><input type="checkbox" name="internet" value="Good" onclick="singleSelect(this)"> Good</label>
+    <label class="radio-item"><input type="checkbox" name="internet" value="Average" onclick="singleSelect(this)"> Average</label>
+    <label class="radio-item"><input type="checkbox" name="internet" value="Not known" onclick="singleSelect(this)"> Not known</label>
+  </div>
+
+  <div class="line-field" style="margin-top:16px;">
+    <span class="lbl"><strong>WORK EXPERIANCE (If applicable)</strong></span>
+    <input type="text" class="fill" name="work_experience">
+  </div>
+
+  <div class="line-field">
+    <span class="lbl"><strong>WHAT ARE YOUR HOBBIES &amp; OTHER LEISURE INTERESTS?</strong></span>
+  </div>
+  <div class="line-field"><input type="text" class="fill" name="hobbies"></div>
+
+  <div class="undertaking">
+    <p style="font-weight:bold;">UNDERTAKING :</p>
+    <ol>
+      <li>I have read, understood &amp; accepted all the code for discipline &amp; academic standards and the contents of the admission prospectus &amp; undertaking of the college / Institute &amp; shall take note of all communication put from time to time.</li>
+      <li>I hereby submit, to the disciplinary jurisdiction of the authorities of the college / Institute and shall observe and abide By the rules made by the Directors / Principal of the Institute /College.</li>
+      <li>I am aware of the responsibilities and duties of as a student, I am prepared to work in any establishment where I am placed for practical exposure and on the job training. I shall always follow the rules and regulations set by the College and abide the disciplinary standards of the organisation.</li>
+      <li>I shall abide to all the hygiene and safety standards while in the institute / college premises or outdoor assignments. It shall be entirely my responsibility to follow the rules &amp; regulations and maintain my own safety.</li>
+      <li>I am aware that I cannot change the course I am enrolled in, and case I want to change the course I shall pay the total fees of the course enrolled for, and I am also aware that such transfer is possible only when the seat for the course sought is available.</li>
+      <li>I am aware that once I take admission for the said course, I am liable for the payment of total course fees.</li>
+      <li>All disputes are subject to Pune Jurisdiction only.</li>
+      <li class="highlight">Students are kindly requested to note that if you have taken provisional admission, you must submit your original documents within 30 days or by 15th July, whichever is earlier. Failing to do so will result in automatic cancellation of your admission.</li>
+    </ol>
+    <p>Your faithfully,</p>
+  </div>
+
+  <div class="signature-row">
+    <div><div class="sign-pad"></div>Signature of Student</div>
+    <div><div class="sign-pad"></div>Signature of Parents</div>
+  </div>
+
+  <div class="doc-checklist">
+    <div class="doc-row"><span class="doc-name">1. Original Leaving Certificate with</span><span>4 photocopies</span></div>
+    <div class="doc-row"><span class="doc-name">2. Original 12<sup>th</sup> Mark sheet with</span><span>4 photocopies</span></div>
+    <div class="doc-row"><span class="doc-name">3. Passport Size Photo</span><span>4 copies</span></div>
+    <div class="doc-row"><span class="doc-name">4. ABC ID Card Photocopy</span><span>2 photocopies</span></div>
+    <div class="doc-row"><span class="doc-name">5. Aadhar Card Photocopy</span><span>2 photocopies</span></div>
+    <p class="cat-title">Category Student Additional Document</p>
+    <div class="doc-row"><span class="doc-name">6. Caste Certificate</span><span>2 photocopies</span></div>
+    <div class="doc-row"><span class="doc-name">7. Domicile Certificate</span><span>2 photocopies</span></div>
+    <div class="doc-row"><span class="doc-name">8. Caste Validity Certificate</span><span>2 photocopies</span></div>
+    <div class="doc-row"><span class="doc-name">9. Income Certificate</span><span>2 photocopies</span></div>
+    <div class="principal-block">Principal</div>
+  </div>
+
+</div>
+
+</form>
+
+<script>
+function singleSelect(checkbox) {
+  const groupName = checkbox.name;
+  document.querySelectorAll('input[name="' + groupName + '"]').forEach(function(cb) {
+    if (cb !== checkbox) cb.checked = false;
+  });
+}
+
+function previewImage(input, labelId, textId) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    const label = document.getElementById(labelId);
+    reader.onload = function(e) {
+      let img = label.querySelector('img');
+      if (!img) {
+        img = document.createElement('img');
+        label.insertBefore(img, label.firstChild);
+      }
+      img.src = e.target.result;
+      const textEl = document.getElementById(textId);
+      if (textEl) textEl.style.display = 'none';
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+</script>
+
+</body>
+</html>
