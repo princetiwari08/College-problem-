@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Certificate - Sarhad College</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #e9e9e9;
+    margin: 0;
+    padding: 20px;
+  }
+  .sheet {
+    max-width: 750px;
+    margin: 0 auto 20px;
+    background: #fdfdf2;
+    padding: 30px 45px 40px;
+    border: 1px solid #ccc;
+    min-height: 900px;
+  }
+  .header-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 4px;
+  }
+  .header-row img { height: 70px; }
+  .header-text { flex: 1; text-align: center; }
+  .sarhads { font-size: 13px; margin: 0 0 2px; }
+  .college-name { font-size: 21px; font-weight: bold; margin: 0; line-height: 1.25; }
+  .subtext { font-size: 12px; margin: 4px 0 0; }
+
+  hr.thick { border: none; border-top: 1px solid #000; margin: 16px 0 10px; }
+
+  .no-row { font-size: 15px; margin: 10px 0 20px; display: -moz-box; align-items: baseline; gap: 6px; }
+  .no-row input { border: none; border-bottom: 1px solid #000; background: transparent; font-family: inherit; font-size: 15px; padding: 2px 4px; width: 160px; outline: none; }
+
+  h1.cert-title {
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 3px;
+    margin: 10px 0 40px;
+  }
+
+  .cert-body { font-size: 16px; line-height: 2.6; }
+  .cert-line { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; }
+  .cert-line .lbl { white-space: nowrap; }
+  input[type="text"] {
+    font-family: inherit;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #000;
+    background: transparent;
+    padding: 2px 4px;
+    outline: none;
+    flex: 1;
+    min-width: 100px;
+  }
+  input[type="text"]:focus { background: #fff8d6; }
+  input[type="date"] {
+    font-family: inherit;
+    font-size: 15px;
+    border: none;
+    border-bottom: 1px solid #000;
+    background: transparent;
+    padding: 2px 4px;
+    outline: none;
+  }
+
+  .moral-line { margin: 20px 0 40px; }
+
+  .pune-line { font-size: 15px; margin: 30px 0 60px; font: 1em sans-serif;}
+
+  .footer-row { display: flex; justify-content: space-between; align-items: flex-end; font-size: 15px; margin-bottom: 60px; }
+  .footer-row .date-field { display: flex; align-items: baseline; gap: 6px; }
+  .footer-row .principal { text-align: center; font-weight: bold; }
+  .sign-pad { width: 200px; height: 50px; border-bottom: 1px solid #000; margin-bottom: 4px; }
+
+  .bottom-info { border-top: 1px solid #000; padding-top: 10px; font-size: 11.5px; text-align: center; line-height: 1.6; }
+  .bottom-info b { font-weight: bold; }
+
+  .toolbar {
+    max-width: 750px;
+    margin: 0 auto 14px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  .toolbar button {
+    font-family: inherit;
+    font-size: 14px;
+    padding: 8px 16px;
+    border: 1px solid #333;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .toolbar button:hover { background: #f0f0f0; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .sheet { border: none; margin: 0 auto; background: #fff; }
+    .toolbar { display: none; }
+    input { border-color: #000 !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button type="button" onclick="window.print()">Print / Save as PDF</button>
+  <button type="button" onclick="document.getElementById('certForm').reset()">Clear Form</button>
+</div>
+
+<form id="certForm">
+<div class="sheet">
+
+  <div class="header-row">
+    <img src="IMG_20260730_195111.jpg" alt="Sarhad College Logo">
+    <div class="header-text">
+      <p class="sarhads">Sarhad's</p>
+      <p class="college-name">SARHAD COLLEGE<br>OF ART'S, COMMERCE &amp; SCIENCE</p>
+      <p class="subtext">[Affiliated to Pune University (ID No PU/PN/ACS/300/2008)<br>and Recognised by Government of Maharashtra]</p>
+    </div>
+  </div>
+
+  <hr class="thick">
+
+  <div class="no-row">
+    <span class="lbl"><strong>No. :</strong></span>
+    <input type="text" name="cert_no">
+  </div>
+
+  <h1 class="cert-title">CERTIFICATE</h1>
+
+  <div class="cert-body">
+    <div class="cert-line">
+      <span class="lbl">This is to certify that Shri. / Smt. / Miss</span>
+      <input type="text" name="student_name">
+    </div>
+    <div class="cert-line">
+      <input type="text" name="student_name_2">
+    </div>
+    <div class="cert-line">
+      <span class="lbl">is / was a bonafide student of the</span>
+      <input type="text" name="course_name">
+    </div>
+    <div class="cert-line">
+      <span class="lbl">Class, in this college in the year</span>
+      <input type="text" name="academic_year">
+    </div>
+    <div class="cert-line">
+      <span class="lbl">He/She has passed the</span>
+      <input type="text" name="exam_passed">
+    </div>
+    <div class="cert-line">
+      <span class="lbl">Examination held in</span>
+      <input type="text" name="exam_held_in">
+    </div>
+    <p class="moral-line">He/She dears a reputable moral character</p>
+  </div>
+
+  <p class="pune-line"><strong>Pune - 411 046.</strong></p>
+
+  <div class="footer-row">
+    <div class="date-field">
+      <span class="lbl"><strong>Date :</strong></span>
+      <input type="date" name="cert_date">
+    </div>
+    <div class="principal">
+      <div class="sign-pad"></div>
+      Principal
+    </div>
+  </div>
+
+  <div class="bottom-info">
+    Sr. No. 79,80,81, 76/4 (New) Katraj, Pune - 411 046. Tel. 020-24368621<br>
+    e-mail : sarhadcollege@gmail.com &nbsp; <b>Website : www.sarhadcollege.org</b>
+  </div>
+
+</div>
+</form>
+
+</body>
+</html>
