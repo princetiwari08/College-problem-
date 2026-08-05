@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarhad College Alumni Association - Receipt</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #e8e8e8;
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 8px;
+    margin: 0;
+  }
+  .toolbar {
+    margin-bottom: 16px;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    max-width: 700px;
+  }
+  .toolbar button {
+    flex: 1;
+    padding: 12px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #1a1a6e;
+    color: #fff;
+  }
+  .toolbar button:active { background: #2a2a8e; }
+
+  .receipt {
+    background: #fff;
+    width: 100%;
+    max-width: 700px;
+    border: 2px solid #000;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-bottom: 2px solid #000;
+  }
+  .logo-img {
+    width: 55px;
+    height: auto;
+    flex-shrink: 0;
+  }
+  .header-text { flex: 1; text-align: center; }
+  .header-text h1 {
+    font-size: 17px;
+    margin: 0 0 4px 0;
+    letter-spacing: 0.5px;
+  }
+  .header-text .reg-no {
+    font-size: 10.5px;
+    margin: 2px 0;
+    font-weight: bold;
+  }
+  .header-text .addr {
+    font-size: 9.5px;
+    margin: 1px 0;
+    line-height: 1.4;
+  }
+
+  .receipt-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px 6px 16px;
+    border-bottom: 1px solid #000;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .receipt-title {
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .receipt-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 14px;
+    align-items: flex-end;
+  }
+  .receipt-meta .m-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .body-content { padding: 14px 16px; }
+
+  .field-block { margin-bottom: 16px; }
+  .field-block label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+
+  input.fill {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    border: none;
+    border-bottom: 1px solid #000;
+    background: transparent;
+    outline: none;
+    padding: 4px 4px;
+    width: 100%;
+  }
+  input.fill:focus { background: #fffbe0; }
+
+  .two-col {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .two-col > div { flex: 1; min-width: 140px; }
+
+  .amount-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .rs-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid #000;
+    padding: 8px 14px;
+  }
+  .rs-box .rs-label {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .rs-box input.fill {
+    border: none;
+    font-size: 18px;
+    width: 100px;
+  }
+
+  .signature-block {
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .signature-line {
+    width: 160px;
+    border-bottom: 1px solid #000;
+    height: 40px;
+    margin-bottom: 4px;
+  }
+
+  @media (min-width: 600px) {
+    .header-text h1 { font-size: 20px; }
+    .header-text .reg-no { font-size: 12px; }
+    .header-text .addr { font-size: 11px; }
+    .logo-img { width: 70px; }
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .toolbar { display: none; }
+    .receipt { box-shadow: none; }
+    input.fill { border-bottom: 1px solid #000; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">Print / Save PDF</button>
+  <button onclick="clearForm()">Clear All</button>
+</div>
+
+<div class="receipt" id="certArea">
+
+  <div class="header">
+    <img class="logo-img" src="REPLACE_WITH_YOUR_LOGO_IMAGE_PATH_OR_BASE64" alt="Sarhad College Logo">
+    <div class="header-text">
+      <h1>SARHAD COLLEGE ALUMNI ASSOCIATION</h1>
+      <p class="reg-no">Registration No. MAH./197/2019/Pune</p>
+      <p class="addr">
+        Sarhad Bhavan, Pune - Kashmir Chowk, S. No. 130-33 (old). 76/4, 79, 80.81 (New),<br>
+        Behind Bharti Vidyapeeth, Katraj, Pune - 411046.<br>
+        Tel.: 020-24368621 Email : sarhadcollege@gmail.com
+      </p>
+    </div>
+  </div>
+
+  <div class="receipt-title-row">
+    <div class="receipt-title">RECEIPT</div>
+    <div class="receipt-meta">
+      <div class="m-row">Receipt No. : <input type="text" class="fill" style="width:90px;"></div>
+      <div class="m-row">Date : <input type="text" class="fill" placeholder="DD/MM/YY" style="width:110px;"></div>
+    </div>
+  </div>
+
+  <div class="body-content">
+
+    <div class="field-block">
+      <label>Received With Thanks From</label>
+    </div>
+
+    <div class="field-block">
+      <label>Miss / Master / Mrs. :</label>
+      <input type="text" class="fill" placeholder="Full Name">
+    </div>
+
+    <div class="field-block">
+      <label>As a Ex-Student's Contribution :</label>
+    </div>
+
+    <div class="two-col field-block">
+      <div>
+        <label>Course :</label>
+        <input type="text" class="fill" placeholder="Course">
+      </div>
+      <div>
+        <label>Year :</label>
+        <input type="text" class="fill" placeholder="Year">
+      </div>
+    </div>
+
+    <div class="field-block">
+      <label>Sum of Rs. :</label>
+      <input type="text" class="fill" placeholder="Amount in words">
+    </div>
+
+    <div class="amount-row">
+      <div class="rs-box">
+        <span class="rs-label">Rs.</span>
+        <input type="text" class="fill" placeholder="0000">
+      </div>
+      <div class="signature-block">
+        <div class="signature-line"></div>
+        Receiver's Signature
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  function clearForm() {
+    const inputs = document.querySelectorAll('#certArea input.fill');
+    inputs.forEach(inp => inp.value = '');
+  }
+</script>
+
+</body>
+</html>
